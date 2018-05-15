@@ -3,3 +3,9 @@ create table tipo_sensor(
     ds_tipo_sensor varchar(200) not null,
     tp_tipo_sensor int not null
 );
+
+insert into tipo_sensor (ds_tipo_sensor, tp_tipo_sensor)
+	values ('ultrasônico', 1);
+    
+insert into tipo_sensor (ds_tipo_sensor, tp_tipo_sensor)
+	values ('NFE', 2);
