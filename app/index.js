@@ -1,4 +1,6 @@
-var app = require('./config/express');
-require('./router/tipo-sensor');
+const app = require('./config/express');
+const tipoSensorRouter = require('./router/tipo-sensor');
+
+tipoSensorRouter.map();
 
 app.listen(3000);

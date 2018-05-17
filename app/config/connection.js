@@ -1,8 +1,8 @@
-var mysqlModel = require('mysql-model');
+const mysqlModel = require('mysql-model');
 
-var AppModel = mysqlModel.createConnection({
-    host     : '172.17.0.4',
-    port     : '3306',
+const AppModel = mysqlModel.createConnection({
+    host     : '0.0.0.0',
+    port     : '32768',
     user     : 'root',
     password : '123',
     database : 'parking_extreme_control',

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/freeman507/parking-extreme-control#readme",
   "dependencies": {
+    "body-parser": "^1.18.3",
     "express": "^4.16.3",
     "mysql-model": "0.0.3"
   }

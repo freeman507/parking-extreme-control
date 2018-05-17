@@ -1,23 +1,29 @@
-var app = require('../config/express');
-var tipoSensorController = require('../controller/tipo-sensor');
+const app = require('../config/express');
+const tipoSensorController = require('../controller/tipo-sensor');
 
-var ENDPOINT = '/tipo-sensor';
+const ENDPOINT = '/tipo-sensor';
 
-app.get(ENDPOINT, function (req, res) {
-    res.send('Hello World')
-});
+function onSuccess(data) {
+    console.log(1, data);
+    res.status(200).send(data);
+}
 
-app.post(ENDPOINT, function (req, res) {
+function onError(error) {
+    console.log(0, error)
+    res.status(500).send(error);
+}
 
-    function onSaveSuccess(data) {
-        res.ok(data);
+module.exports = {
+
+    map: () => {
+
+        app.get(ENDPOINT, (req, res) => {
+            tipoSensorController.find().then(onSuccess, onError);
+        });
+
+        app.post(ENDPOINT, (req, res) => {
+            tipoSensorController.insert(req.body).then(onError, onSuccess);
+        });
+
     }
-
-    function onSaveError(error) {
-        res.error(error);
-    }
-
-    console.log(req)
-
-    tipoSensorController.insert(req.data.dsTipoSensor, req.data.tpTipoSensor).then(onSaveError, onSaveSuccess);
-});
+};

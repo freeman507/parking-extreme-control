@@ -1,18 +1,25 @@
-var TipoSensor = require('../model/tipo-sensor');
-
-function insert(dsTipoSensor, tpTipoSersor) {
-    return new Promise(function (resolve, reject) {
-
-        var model = new TipoSensor({
-            ds_tipo_sensor: dsTipoSensor,
-            tp_tipo_sensor: tpTipoSersor
-        });
-
-        model.save(reject, resolve);
-
-    });
-}
+const dao = require('../dao/tipo-sensor');
 
 module.exports = {
-    insert: insert
+
+    insert: (data) => {
+        return dao.insert(data);
+    },
+
+    update: (data) => {
+        return dao.update(data);
+    },
+
+    find: () => {
+        return dao.find();
+    },
+
+    findOne: (id) => {
+        return dao.findOne(id);
+    },
+
+    remove: (id) => {
+        return dao.remove(id);
+    },
+
 };

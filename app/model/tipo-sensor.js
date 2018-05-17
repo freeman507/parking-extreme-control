@@ -1,6 +1,6 @@
-var AppModel = require('../config/connection');
+const AppModel = require('../config/connection');
 
-var TipoSensor = AppModel.extend({
+const TipoSensor = AppModel.extend({
     tableName: 'tipo_sensor',
 });
 
