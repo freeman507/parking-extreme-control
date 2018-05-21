@@ -1,101 +1,54 @@
 const TipoSensor = require('../model/tipo-sensor');
+const dao = require('./dao');
 
 module.exports = {
 
-    insert: (data) => {
+    insert: (data, onSuccess, onError) => {
 
-        return new Promise((resolve, reject) => {
-
-            const model = new TipoSensor({
-                ds_tipo_sensor: data.dsTipoSensor,
-                tp_tipo_sensor: data.tpTipoSensor
-            });
-
-            model.save((error, result) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(result);
-                }
-            });
-
+        const model = new TipoSensor({
+            ds_tipo_sensor: data.dsTipoSensor,
+            tp_tipo_sensor: data.tpTipoSensor
         });
+
+        dao.save(model, onSuccess, onError);
 
     },
 
-    update: (data) => {
+    update: (data, onSuccess, onError) => {
 
-        return new Promise((resolve, reject) => {
-
-            const model = new TipoSensor({
-                id_tipo_sensor: data.idTipoSensor,
-                ds_tipo_sensor: data.dsTipoSensor,
-                tp_tipo_sensor: data.tpTipoSensor
-            });
-
-            model.save((error, result) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(result);
-                }
-            });
-
+        const model = new TipoSensor({
+            id_tipo_sensor: data.idTipoSensor,
+            ds_tipo_sensor: data.dsTipoSensor,
+            tp_tipo_sensor: data.tpTipoSensor
         });
+
+        dao.save(model, onSuccess, onError);
 
     },
 
-    find: () => {
+    findAll: (onSuccess, onError) => {
 
-        return new Promise((resolve, reject) => {
+        const model = new TipoSensor();
 
-            const model = new TipoSensor();
-
-            model.find((error, result) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(result);
-                }
-            });
-
-        });
+        dao.findAll(model, onSuccess, onError);
 
     },
 
-    findOne: (id) => {
+    findById: (id, onSuccess, onError) => {
 
-        return new Promise((resolve, reject) => {
-
-            const model = new TipoSensor();
-
-            model.find('first', { where: 'id = '.concat(id) }, (error, result) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(result);
-                }
-            });
-
+        const model = new TipoSensor({
+            id_tipo_sensor: id
         });
+
+        dao.findById(model, onSuccess, onError);
 
     },
 
-    delete: (data) => {
+    remove: (id, onSuccess, onError) => {
 
-        return new Promise((resolve, reject) => {
+        const model = new TipoSensor();
 
-            const model = new TipoSensor();
-
-            model.remove('id = '.concat(id), (error, result) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    resolve(result);
-                }
-            });
-
-        });
+        dao.remove(model, id, onSuccess, onError);
 
     },
 

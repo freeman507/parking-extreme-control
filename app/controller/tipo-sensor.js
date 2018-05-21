@@ -1,25 +1,21 @@
+const controller = require('./controller');
 const dao = require('../dao/tipo-sensor');
 
 module.exports = {
 
-    insert: (data) => {
-        return dao.insert(data);
-    },
+    insert: (response, data) =>
+        controller.insert(dao, response, data),
 
-    update: (data) => {
-        return dao.update(data);
-    },
+    update: (response, data) =>
+        controller.update(dao, response, data),
 
-    find: () => {
-        return dao.find();
-    },
+    findAll: (response) =>
+        controller.findAll(dao, response),
 
-    findOne: (id) => {
-        return dao.findOne(id);
-    },
+    findById: (response, id) =>
+        controller.findById(dao, response, id),
 
-    remove: (id) => {
-        return dao.remove(id);
-    },
+    remove: (response, id) =>
+        controller.remove(dao, response, id)
 
 };

@@ -3,27 +3,18 @@ const tipoSensorController = require('../controller/tipo-sensor');
 
 const ENDPOINT = '/tipo-sensor';
 
-function onSuccess(data) {
-    console.log(1, data);
-    res.status(200).send(data);
-}
+app.get(ENDPOINT, (req, res) => {
+    tipoSensorController.findAll(res);
+});
 
-function onError(error) {
-    console.log(0, error)
-    res.status(500).send(error);
-}
+app.get(ENDPOINT.concat('/:id'), (req, res) => {
+    tipoSensorController.findById(res, req.params.id);
+});
 
-module.exports = {
+app.post(ENDPOINT, (req, res) => {
+    tipoSensorController.insert(res, req.body);
+});
 
-    map: () => {
-
-        app.get(ENDPOINT, (req, res) => {
-            tipoSensorController.find().then(onSuccess, onError);
-        });
-
-        app.post(ENDPOINT, (req, res) => {
-            tipoSensorController.insert(req.body).then(onError, onSuccess);
-        });
-
-    }
-};
+app.delete(ENDPOINT.concat('/:id'), (req, res) => {
+    tipoSensorController.remove(res, req.params.id);
+});
