@@ -35,7 +35,7 @@ module.exports = {
 
     remove: (model, id, onSuccess, onError) => {
 
-        model.remove([model.getId(), id].join('='));
+        model.remove([model.id, id].join('='));
 
         onSuccess();
     },
