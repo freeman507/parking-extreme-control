@@ -5,10 +5,7 @@ module.exports = {
 
     insert: (data, onSuccess, onError) => {
 
-        const model = new TipoSensor({
-            ds_tipo_sensor: data.dsTipoSensor,
-            tp_tipo_sensor: data.tpTipoSensor
-        });
+        const model = new TipoSensor(data);
 
         dao.save(model, onSuccess, onError);
 
@@ -16,15 +13,9 @@ module.exports = {
 
     update: (data, onSuccess, onError) => {
 
-        console.log(1, data)
+        const model = new TipoSensor(data);
 
-        const model = new TipoSensor({
-            id_tipo_sensor: data.idTipoSensor,
-            ds_tipo_sensor: data.dsTipoSensor,
-            tp_tipo_sensor: data.tpTipoSensor
-        });
-
-        dao.update(model, data.idTipoSensor, onSuccess, onError);
+        dao.update(model, data.id_tipo_sensor, onSuccess, onError);
 
     },
 
