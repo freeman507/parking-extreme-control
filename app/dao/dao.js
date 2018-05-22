@@ -11,6 +11,17 @@ module.exports = {
         });
     },
 
+    update: (model, id, onSuccess, onError) => {
+
+        model.save([model.primaryKey, id].join('='), (error, result) => {
+            if (error) {
+                onError(error);
+            } else {
+                onSuccess(result);
+            }
+        });
+    },
+
     findAll: (model, onSuccess, onError) => {
 
         model.find((error, result) => {
@@ -22,9 +33,9 @@ module.exports = {
         });
     },
 
-    findById: (model, onSuccess, onError) => {
+    findById: (model, id, onSuccess, onError) => {
 
-        model.find((error, result) => {
+        model.find('first', { where: [model.primaryKey, id].join('=') }, (error, result) => {
             if (error) {
                 onError(error);
             } else {
@@ -35,9 +46,13 @@ module.exports = {
 
     remove: (model, id, onSuccess, onError) => {
 
-        model.remove([model.id, id].join('='));
-
-        onSuccess();
+        model.remove([model.primaryKey, id].join('='), (error, result) => {
+            if (error) {
+                onError(error);
+            } else {
+                onSuccess(result);
+            }
+        });
     },
 
 }

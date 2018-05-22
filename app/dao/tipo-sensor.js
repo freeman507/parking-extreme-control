@@ -16,13 +16,15 @@ module.exports = {
 
     update: (data, onSuccess, onError) => {
 
+        console.log(1, data)
+
         const model = new TipoSensor({
             id_tipo_sensor: data.idTipoSensor,
             ds_tipo_sensor: data.dsTipoSensor,
             tp_tipo_sensor: data.tpTipoSensor
         });
 
-        dao.save(model, onSuccess, onError);
+        dao.update(model, data.idTipoSensor, onSuccess, onError);
 
     },
 
@@ -36,11 +38,9 @@ module.exports = {
 
     findById: (id, onSuccess, onError) => {
 
-        const model = new TipoSensor({
-            id_tipo_sensor: id
-        });
+        const model = new TipoSensor();
 
-        dao.findById(model, onSuccess, onError);
+        dao.findById(model, id, onSuccess, onError);
 
     },
 

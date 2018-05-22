@@ -11,6 +11,10 @@ app.get(ENDPOINT.concat('/:id'), (req, res) => {
     tipoSensorController.findById(res, req.params.id);
 });
 
+app.put(ENDPOINT, (req, res) => {
+    tipoSensorController.update(res, req.body);
+});
+
 app.post(ENDPOINT, (req, res) => {
     tipoSensorController.insert(res, req.body);
 });
