@@ -1,4 +1,3 @@
-const mysql = require('./../config/mysql');
 const dao = require('./dao');
 
 module.exports = {
