@@ -1,7 +1,7 @@
 const app = require('./../config/express');
-const controller = require('./../controller/tipo-sensor');
+const controller = require('./../controller/estado');
 
-const ENDPOINT = '/tipo-sensor';
+const ENDPOINT = '/estado';
 
 app.get(ENDPOINT, (req, res) => {
     controller.findAll(res);
