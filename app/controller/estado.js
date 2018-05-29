@@ -1,5 +1,5 @@
 const controller = require('./controller');
-const dao = require('./../dao/tipo-sensor');
+const dao = require('./../dao/estado');
 
 module.exports = {
 
