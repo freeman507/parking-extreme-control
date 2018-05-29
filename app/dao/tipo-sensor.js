@@ -1,46 +1,60 @@
-const TipoSensor = require('../model/tipo-sensor');
+const mysql = require('./../config/mysql');
 const dao = require('./dao');
 
 module.exports = {
 
     insert: (data, onSuccess, onError) => {
 
-        const model = new TipoSensor(data);
+        const query = 'INSERT INTO tipo_sensor (ds_tipo_sensor, tp_tipo_sensor) VALUES (\'#\', #);'
+            .replace('#', data.dsTipoSensor)
+            .replace('#', data.tpTipoSensor);
 
-        dao.save(model, onSuccess, onError);
+        dao.exec(query, onSuccess, onError);
 
     },
 
     update: (data, onSuccess, onError) => {
 
-        const model = new TipoSensor(data);
+        const query = 'UPDATE tipo_sensor SET ds_tipo_sensor = \'#\', tp_tipo_sensor = # WHERE id_tipo_sensor = #;'
+            .replace('#', data.dsTipoSensor)
+            .replace('#', data.tpTipoSensor)
+            .replace('#', data.idTipoSensor);
 
-        dao.update(model, data.id_tipo_sensor, onSuccess, onError);
+        dao.exec(query, onSuccess, onError);
 
     },
 
     findAll: (onSuccess, onError) => {
 
-        const model = new TipoSensor();
+        const query = `SELECT 
+            id_tipo_sensor AS idTipoSensor,
+            ds_tipo_sensor AS dsTipoSensor,
+            tp_tipo_sensor AS tpTipoSensor 
+            FROM tipo_sensor;`;
 
-        dao.findAll(model, onSuccess, onError);
+        dao.exec(query, onSuccess, onError);
 
     },
 
     findById: (id, onSuccess, onError) => {
 
-        const model = new TipoSensor();
+        const query = `SELECT 
+            id_tipo_sensor AS idTipoSensor,
+            ds_tipo_sensor AS dsTipoSensor,
+            tp_tipo_sensor AS tpTipoSensor 
+            FROM tipo_sensor
+            WHERE id_tipo_sensor = # LIMIT 1;`.replace('#', id);
 
-        dao.findById(model, id, onSuccess, onError);
+        dao.exec(query, onSuccess, onError);
 
     },
 
     remove: (id, onSuccess, onError) => {
 
-        const model = new TipoSensor();
+        const query = 'DELETE FROM tipo_sensor WHERE id_tipo_sensor = #;'.replace('#', id);
 
-        dao.remove(model, id, onSuccess, onError);
+        dao.exec(query, onSuccess, onError);
 
-    },
+    }
 
 };

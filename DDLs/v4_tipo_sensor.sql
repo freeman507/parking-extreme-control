@@ -5,7 +5,7 @@ create table tipo_sensor(
 );
 
 insert into tipo_sensor (ds_tipo_sensor, tp_tipo_sensor)
-	values ('ultrasônico', 1);
+	values ('ultrassônico', 1);
     
 insert into tipo_sensor (ds_tipo_sensor, tp_tipo_sensor)
 	values ('NFE', 2);

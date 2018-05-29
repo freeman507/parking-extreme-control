@@ -28,7 +28,7 @@ const ctrl = {
 
     findById: (dao, response, id) => {
         dao.findById(id,
-            (data) => ctrl.onSuccess(response, data),
+            (data) => ctrl.onSuccess(response, data[0]),
             (error) => ctrl.onError(response, error));
     },
 
