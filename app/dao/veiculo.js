@@ -4,7 +4,11 @@ module.exports = {
 
     insert: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'INSERT INTO veiculo (ds_placa, ds_modelo, id_tipo_veiculo, id_pessoa) VALUES (\'#\', \'#\', #, #);'
+            .replace('#', data.dsPlaca)
+            .replace('#', data.dsModelo)
+            .replace('#', data.idTipoVeiculo)
+            .replace('#', data.idPessoa);
 
         dao.exec(query, onSuccess, onError);
 
@@ -12,7 +16,12 @@ module.exports = {
 
     update: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'UPDATE veiculo SET ds_placa = \'#\', ds_modelo = \'#\', id_tipo_veiculo = #, id_pessoa = # WHERE id_veiculo = #;'
+            .replace('#', data.dsPlaca)
+            .replace('#', data.dsModelo)
+            .replace('#', data.idTipoVeiculo)
+            .replace('#', data.idPessoa)
+            .replace('#', data.idVeiculo);
 
         dao.exec(query, onSuccess, onError);
 
@@ -20,7 +29,13 @@ module.exports = {
 
     findAll: (onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+            id_veiculo AS idVeiculo,
+            ds_placa AS dsPlaca,
+            ds_modelo AS dsModelo,
+            id_tipo_veiculo AS idTipoVeiculo,
+            id_pessoa AS idPessoa 
+            FROM veiculo`;
 
         dao.exec(query, onSuccess, onError);
 
@@ -28,7 +43,14 @@ module.exports = {
 
     findById: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+            id_veiculo AS idVeiculo,
+            ds_placa AS dsPlaca,
+            ds_modelo AS dsModelo,
+            id_tipo_veiculo AS idTipoVeiculo,
+            id_pessoa AS idPessoa 
+            FROM veiculo
+            WHERE id_veiculo = # LIMIT 1;`.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
@@ -36,7 +58,7 @@ module.exports = {
 
     remove: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'DELETE FROM veiculo WHERE id_veiculo = #;'.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
