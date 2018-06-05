@@ -4,7 +4,11 @@ module.exports = {
 
     insert: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'INSERT INTO funcionario (ds_cargo, dt_admissao, dt_demissao, id_pessoa) VALUES (\'#\', #, #, #);'
+            .replace('#', data.dsCargo)
+            .replace('#', data.dtAdmissao)
+            .replace('#', data.dtDemissao)
+            .replace('#', data.idPessoa);
 
         dao.exec(query, onSuccess, onError);
 
@@ -12,7 +16,12 @@ module.exports = {
 
     update: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'UPDATE funcionario SET ds_cargo = #, dt_admissao = #, dt_demissao = #, id_pessoa = # WHERE id_funcionario = #;'
+            .replace('#', data.dsCargo)
+            .replace('#', data.dtAdmissao)
+            .replace('#', data.dtDemissao)
+            .replace('#', data.idPessoa)
+            .replace('#', data.idFuncionario);
 
         dao.exec(query, onSuccess, onError);
 
@@ -20,7 +29,13 @@ module.exports = {
 
     findAll: (onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+            id_funcionario AS idFuncionario,
+            ds_cargo AS dsCargo,
+            dt_admissao AS dtAdmissao,
+            dt_demissao AS dtDemissao,
+            id_pessoa AS idPessoa 
+            FROM funcionario;`;
 
         dao.exec(query, onSuccess, onError);
 
@@ -28,7 +43,14 @@ module.exports = {
 
     findById: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+            id_funcionario AS idFuncionario,
+            ds_cargo AS dsCargo,
+            dt_admissao AS dtAdmissao,
+            dt_demissao AS dtDemissao,
+            id_pessoa AS idPessoa 
+            FROM funcionario 
+            WHERE id_funcionario = # LIMIT 1;`.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
@@ -36,7 +58,7 @@ module.exports = {
 
     remove: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'DELETE FROM funcionario WHERE id_funcionario = #;'.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
