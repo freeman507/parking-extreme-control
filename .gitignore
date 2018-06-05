@@ -63,4 +63,4 @@ typings/
 # intelliJ
 .idea
 
-.idea/dataSources.xml
+dataSources.xml
