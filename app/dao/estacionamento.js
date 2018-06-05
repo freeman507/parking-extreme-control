@@ -5,7 +5,8 @@ module.exports = {
 
     insert: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `INSERT INTO estacionamento (id_quadra, id_tipo_estacionamento) 
+        VALUES (#, #);`.replace('#', data.idQuadra, data.idTipoEstacionamento);
 
         dao.exec(query, onSuccess, onError);
 
@@ -13,7 +14,10 @@ module.exports = {
 
     update: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `UPDATE estacionamento SET id_quadra = #, id_tipo_estacionamento = # 
+        WHERE id_estacionamento = #;`.replace('#', data.idQuadra)
+            .replace('#', data.idTipoEstacionamento)
+            .replace('#', data.idEstacionamento);
 
         dao.exec(query, onSuccess, onError);
 
@@ -21,7 +25,11 @@ module.exports = {
 
     findAll: (onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+        id_estacionamento as idEstacionamento, 
+        id_quadra as idQuadra, 
+        id_tipo_estacionamento as idTipoEstacionamento 
+        FROM estacionamento;`;
 
         dao.exec(query, onSuccess, onError);
 
@@ -29,7 +37,11 @@ module.exports = {
 
     findById: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+        id_estacionamento as idEstacionamento, 
+        id_quadra as idQuadra, 
+        id_tipo_estacionamento as idTipoEstacionamento 
+        FROM estacionamento WHERE id_estacionamento = #`.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
@@ -37,7 +49,7 @@ module.exports = {
 
     remove: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `DELETE FROM estacionamento WHERE id_estacionamento = #;`.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
