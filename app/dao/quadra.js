@@ -4,7 +4,9 @@ module.exports = {
 
     insert: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `INSERT INTO quadra (nr_quadra, id_rua) VALUES (#,#);`
+            .replace('#', data.nrQuadra)
+            .replace('#', data.idRua);
 
         dao.exec(query, onSuccess, onError);
 
@@ -12,7 +14,10 @@ module.exports = {
 
     update: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `UPDATE quadra SET nr_quadra = #, id_rua = # WHERE id_quadra = #;`
+            .replace('#', data.nrQuadra)
+            .replace('#', data.idRua)
+            .replace('#', data.idQuadra);
 
         dao.exec(query, onSuccess, onError);
 
@@ -20,7 +25,10 @@ module.exports = {
 
     findAll: (onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+        id_quadra as idQuadra,
+        nr_quadra as nrQuadra,
+        id_rua as idRua FROM quadra;`
 
         dao.exec(query, onSuccess, onError);
 
@@ -28,7 +36,9 @@ module.exports = {
 
     findById: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+
+        const query = `SELECT id_quadra as idQuadra, nr_quadra as nrQuadra, id_rua as idRua FROM quadra WHERE id_rua = # LIMIT 1;`
+            .replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
@@ -36,7 +46,7 @@ module.exports = {
 
     remove: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'DELETE FROM quadra WHERE id_quadra = #;'.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
