@@ -4,7 +4,9 @@ module.exports = {
 
     insert: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `INSERT INTO funcionario_quadra (id_quadra, id_funcionario) VALUES (#, #);`
+            .replace('#', data.idQuadra)
+            .replace('#', data.idFuncionario);
 
         dao.exec(query, onSuccess, onError);
 
@@ -12,7 +14,10 @@ module.exports = {
 
     update: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `UPDATE funcionario_quadra SET id_quadra = #, id_funcionario = # WHERE id_funcionario_quadra = #;`
+            .replace('#', data.idQuadra)
+            .replace('#', data.idFuncionario)
+            .replace('#', data.idFuncionarioQuadra);
 
         dao.exec(query, onSuccess, onError);
 
@@ -20,7 +25,10 @@ module.exports = {
 
     findAll: (onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+        id_funcionario_quadra as idFuncionarioQuadra,  
+        id_funcionario as idFuncionario, 
+        id_quadra as idQuadra FROM funcionario_quadra;`;
 
         dao.exec(query, onSuccess, onError);
 
@@ -28,7 +36,11 @@ module.exports = {
 
     findById: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+        id_funcionario_quadra as idFuncionarioQuadra,  
+        id_funcionario as idFuncionario, 
+        id_quadra as idQuadra FROM funcionario_quadra 
+        WHERE id_funcionario_quadra = #;`.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
@@ -36,7 +48,7 @@ module.exports = {
 
     remove: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'DELETE FROM funcionario_quadra WHERE id_funcionario_quadra = #;'.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
