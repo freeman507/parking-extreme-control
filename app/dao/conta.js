@@ -4,7 +4,10 @@ module.exports = {
 
     insert: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'INSERT INTO conta (qt_saldo, id_pessoa, id_veiculo) VALUES (#, #, #);'
+            .replace('#', data.qtSaldo)
+            .replace('#', data.idPessoa)
+            .replace('#', data.idVeiculo);
 
         dao.exec(query, onSuccess, onError);
 
@@ -12,7 +15,11 @@ module.exports = {
 
     update: (data, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'UPDATE conta qt_saldo = #, id_pessoa = #, id_veiculo = # WHERE id_conta = #;'
+            .replace('#', data.qtSaldo)
+            .replace('#', data.idPessoa)
+            .replace('#', data.idVeiculo)
+            .replace('#', data.idConta);
 
         dao.exec(query, onSuccess, onError);
 
@@ -20,7 +27,12 @@ module.exports = {
 
     findAll: (onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+            id_conta AS idConta,
+            qt_saldo AS qtSaldo,
+            id_pessoa AS idPessoa,
+            id_veiculo AS idVeiculo 
+            FROM conta;`;
 
         dao.exec(query, onSuccess, onError);
 
@@ -28,7 +40,13 @@ module.exports = {
 
     findById: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = `SELECT 
+            id_conta AS idConta,
+            qt_saldo AS qtSaldo,
+            id_pessoa AS idPessoa,
+            id_veiculo AS idVeiculo 
+            FROM conta 
+            WHERE id_conta = # LIMIT 1;`.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
@@ -36,7 +54,7 @@ module.exports = {
 
     remove: (id, onSuccess, onError) => {
 
-        // TODO - fazer query
+        const query = 'DELETE FROM conta WHERE id_conta = #;'.replace('#', id);
 
         dao.exec(query, onSuccess, onError);
 
