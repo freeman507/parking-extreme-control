@@ -1,5 +1,5 @@
 const controller = require('./controller');
-const dao = require('./../dao/bairro');
+const dao = require('./../dao/rua');
 
 module.exports = {
 
