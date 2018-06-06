@@ -1,5 +1,4 @@
 const dao = require('./dao');
-const ESTACIONAMENTO_ENUM = require('./enum/tipo-estacionamento');
 
 module.exports = {
 

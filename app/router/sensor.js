@@ -1,4 +1,4 @@
-const app = require('./../config/sensor');
+const app = require('./../config/express');
 const controller = require('./../controller/sensor');
 
 const ENDPOINT = '/cidade';
